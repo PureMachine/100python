@@ -18,10 +18,7 @@ guessed = []
 
 
 def cleanup():
-    all_states = state_data.state.to_list()
-    for state in all_states:
-        if state in guessed:
-            all_states.remove(state)
+    all_states = [state for state in state_data.state.to_list() if state not in guessed]
     data = {"state": all_states}
     pandas.DataFrame(data=data).to_csv("learning.csv")
 
